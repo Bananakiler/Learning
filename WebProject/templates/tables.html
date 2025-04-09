@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息表格页面</title>
+    <style>
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        
+        footer {
+            color: blueviolet;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            flex-direction: column;
+            margin: 0;
+        }
+
+        table#services {
+            width: 85%;
+            max-width: 1500px; /* 限制表格最大宽度，防止它变得太宽 */
+            border-collapse: collapse;
+            margin: 100px 150px;
+            font-size: 18px;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        table#services thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        table#services th,
+        table#services td {
+            padding: 12px 15px;
+        }
+
+        table#services tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        table#services tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        table#services tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+        table#services tbody tr:hover {
+            background-color: #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            display: flex;
+            align-items: center; /* 垂直居中对齐 */
+            gap: 20px; /* 图片和表单之间的间距 */
+            padding: 20px;
+        }
+
+        img {
+            padding: 100px;
+        }
+
+        #user-form {
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        form {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+            width: 80%;
+        }
+
+        input {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .button-container {
+            position: fixed;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .fixed-button {
+            padding: 20px 50px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .fixed-button:hover {
+            background: #45a049;
+        }
+
+/*以下为导航栏的css样式代码*/
+        .vertical-nav {
+            width: 130px; /* 导航栏宽度 */
+            height: 100%; /* 占满视口高度 */
+            background-color: #333; /* 背景颜色 */
+            position: fixed; /* 固定位置 */
+            top: 0;
+            left: 0;
+            overflow-y: auto; /* 如果导航项太多，可以滚动 */
+        }
+
+        .vertical-nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .vertical-nav ul li a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        .vertical-nav ul li a:hover {
+            background-color: #555; /* 悬停时的背景颜色 */
+        }
+/*分割线——————————————————————————————————————————————————————————————————*/
+    </style>
+
+    <script>
+        function showAlert() {
+        alert("功能尚在开发");
+        }
+
+        function authenticate() {
+            document.getElementById('hiddenContent').style.display = 'block';
+        }
+    </script>
+
+
+</head>
+<body>
+    <header>
+        <h1>健康管理系统</h1>
+        <h4>欢迎，{{user}}用户</h4>
+    </header>
+
+    <nav class="vertical-nav">
+        <ul>
+            <li><a href="/intro">首页</a></li>
+            <li><a href="/aboutus">关于我们</a></li>
+            <li><a href="/tables">服务</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <table id="services">
+                <thead>
+                    <tr>
+                        <th>血压（mmHg）</th>
+                        <th>空腹血糖（mmol/L）</th>
+                        <th>胆固醇（mmol/L）</th>
+                        <th>尿酸（μmol/L）</th>
+                        <th>白细胞（x 10^9/L）</th>
+                        <th>肝功能</th>
+                        <th>时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in datas %}
+                        <tr>
+                            <td>{{ data.血压 }}</td>
+                            <td>{{ data.空腹血糖 }}</td>
+                            <td>{{ data.胆固醇 }}</td>
+                            <td>{{ data.尿酸 }}</td>
+                            <td>{{ data.白细胞 }}</td>
+                            <td>{{ data.肝功能 }}</td>
+                            <td>{{ data.日期 }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <div class="container">
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Plot">
+            <div id="hiddenContent" style="display: none;">
+                <section id="user-form">
+                    <form id="index-form">
+                        <label for="name">姓名:</label>
+                        <input type="text" id="name" required>
+
+                        <label for="blood_pressure">血压（mmHg）</label>
+                        <input type="text" id="blood_pressure" required>
+
+                        <label for="blood_sugar">空腹血糖（mmol/L）</label>
+                        <input type="text" id="blood_sugar" required>
+
+                        <label for="uric_acid">尿酸（μmol/L）</label>
+                        <input type="text" id="uric_acid" required>
+
+                        <label for="white_cell">白细胞（x 10^9/L）</label>
+                        <input type="text" id="white_cell" required>
+
+                        <label for="liver">肝功能</label>
+                        <input type="text" id="liver" required>
+
+                        <button type="submit">提交</button>
+                    </form>
+                    
+                    <div id="bmi-result"></div>
+                </section>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="fixed-button" id="manual" type="submit" onclick="authenticate()">手动输入</button>
+            <button class="fixed-button" id="automatic" type="submit" onclick="showAlert()">图像识别</button>
+        </div>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2025 健康管理</p>
+    </footer>
+
+</body>
+</html>

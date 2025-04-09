@@ -1,0 +1,90 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态折线图</title>
+</head>
+<body>
+    <h1>动态折线图</h1>
+    <div id="chartContainer"></div>
+
+    <script>
+        function loadChart() {
+            fetch('/get_data')
+                .then(response => response.json())
+                .then(data => {
+                    let img = document.createElement('img');
+                    img.src = 'data:image/png;base64,' + data.image;
+                    document.getElementById('chartContainer').appendChild(img);
+                });
+        }
+
+        // 首次加载图表
+        loadChart();
+
+        // 设置定时器，每隔5秒刷新图表数据
+        setInterval(loadChart, 5000);
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态图表</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="myChart"></canvas>
+    <script>
+        // 获取画布的上下文
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        // 初始化图表
+        let myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [],
+                    backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // 动态更新数据的函数
+        function updateChart() {
+            // 模拟数据更新，这里可以是实际的API调用或其他数据源
+            const newLabel = new Date().toLocaleTimeString();
+            const newValue = Math.floor(Math.random() * 100); // 随机值作为示例
+
+            // 限制图表点数
+            if (myChart.data.labels.length > 10) {
+                myChart.data.labels.shift();
+                myChart.data.datasets[0].data.shift();
+            }
+
+            myChart.data.labels.push(newLabel);
+            myChart.data.datasets[0].data.push(newValue);
+            myChart.update();
+        }
+
+        // 每秒更新一次图表
+        setInterval(updateChart, 1000);
+    </script>
+</body>
+</html>

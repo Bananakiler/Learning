@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康体检系统介绍</title>
+    <style>
+        div {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 800px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="content">
+        <h1>健康体检系统介绍</h1>
+
+        <p>欢迎使用我们的新型健康体检系统，这是一款为您提供全面健康评估的现代工具。通过我们的系统，您可以：</p>
+
+        <ul>
+            <li><strong>快速预约</strong> - 在线轻松预约体检时间，避免排队等候。</li>
+            <li><strong>全面检查</strong> - 包括但不限于血压、血糖、心电图、超声波检查等多项健康指标。</li>
+            <li><strong>实时结果</strong> - 一旦检查完成，立即获得您的健康报告。</li>
+            <li><strong>个性化建议</strong> - 根据您的健康数据，我们提供个性化的健康建议和后续跟踪。</li>
+            <li><strong>隐私保护</strong> - 您的所有数据都将受到严格的隐私保护，不会泄露给第三方。</li>
+        </ul>
+
+        <h2>如何使用</h2>
+        <p>
+            登录我们的网站，创建个人用户，填写个人信息并上传相关档案。完成后，系统会自动录入您的健康体检指标并生成相关的可视化数据供您参考。
+        </p>
+
+        <h2>为什么选择我们</h2>
+        <p>
+            我们的健康体检系统不仅仅是检查身体状况，更是对健康生活的全面管理。我们使用最先进的医学设备，并由专业医学团队提供服务，确保您获得最准确的健康评估。
+        </p>
+    </div>
+    
+    <div id="hiddenContent" style="display: none;">
+        <h2>为什么选择我们</h2>
+        <p>
+            我们的健康体检系统不仅仅是检查身体状况，更是对健康生活的全面管理。我们使用最先进的医学设备，并由专业医学团队提供服务，确保您获得最准确的健康评估。
+        </p>
+        <!-- 这里是你想隐藏的内容 -->
+        <p>这是保密信息</p>
+    </div>
+    
+    <form onsubmit="return authenticate(event)">
+        <input type="text" id="authInput" placeholder="请输入认证码">
+        <button type="submit">提交</button>
+    </form>
+    
+    <script>
+        function authenticate(event) {
+            event.preventDefault();
+            const input = document.getElementById('authInput').value;
+            const correctCode = '123456'; // 设置你的认证码
+            
+            if (input == correctCode) {
+                document.getElementById('hiddenContent').style.display = 'block';
+            } else {
+                alert('认证码错误！');
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

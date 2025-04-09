@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .login-container {
+            background: white;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: inset;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 300px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a:hover {
+            color: aqua;
+        }
+
+        #message {
+            margin-top: 10px;
+            color: red;
+            text-align: center;
+        }
+    </style>
+    
+    <script>
+        // 登录失败时也会显示（可删）
+        // function showAlert() {
+        // alert("登录成功");
+        // }
+    </script>
+
+</head>
+<body>
+    <div class="login-container">
+        <h2>用户登录</h2>
+        <form id="loginForm", method="post">
+            <label for="username">用户名:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">密码:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" onclick="showAlert()">登录</button>
+        </form>
+        <a href = "/register" style="text-align: center;"><p>新用户注册</p></a>
+        <br/>
+            {% if msg %}
+                <div id="message">{{msg}}</div>
+            {% endif %}
+        <br/>
+    </div>
+</body>
+</html>

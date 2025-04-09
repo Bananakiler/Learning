@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息表格页面</title>
+    <style>
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        
+        footer {
+            color: blueviolet;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            flex-direction: column;
+            margin: 0;
+        }
+
+/*以下为导航栏的css样式代码*/
+        .vertical-nav {
+            width: 130px; /* 导航栏宽度 */
+            height: 100%; /* 占满视口高度 */
+            background-color: #333; /* 背景颜色 */
+            position: fixed; /* 固定位置 */
+            top: 0;
+            left: 0;
+            overflow-y: auto; /* 如果导航项太多，可以滚动 */
+        }
+
+        .vertical-nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .vertical-nav ul li a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        .vertical-nav ul li a:hover {
+            background-color: #555; /* 悬停时的背景颜色 */
+        }
+/*分割线——————————————————————————————————————————————————————————————————*/
+        main {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 800px;
+        }
+        .maintitle, h2 {
+            color: #333;
+        }
+        .maincontent {
+            padding-left: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>健康管理系统</h1>
+        <h4>欢迎，{{user}}用户</h4>
+    </header>
+
+    <nav class="vertical-nav">
+        <ul>
+            <li><a href="/intro">首页</a></li>
+            <li><a href="/aboutus">关于我们</a></li>
+            <li><a href="/tables">服务</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1 id="maintitle">健康体检系统介绍</h1>
+
+        <p>欢迎使用我们的新型健康体检系统，这是一款为您提供全面健康评估的现代工具。通过我们的系统，您可以：</p>
+
+        <ul id="maincontent">
+            <li><strong>快速预约</strong> - 在线轻松预约体检时间，避免排队等候。</li>
+            <li><strong>全面检查</strong> - 包括但不限于血压、血糖、心电图、超声波检查等多项健康指标。</li>
+            <li><strong>实时结果</strong> - 一旦检查完成，立即获得您的健康报告。</li>
+            <li><strong>个性化建议</strong> - 根据您的健康数据，我们提供个性化的健康建议和后续跟踪。</li>
+            <li><strong>隐私保护</strong> - 您的所有数据都将受到严格的隐私保护，不会泄露给第三方。</li>
+        </ul>
+
+        <h2>如何使用</h2>
+        <p>
+            登录我们的网站，创建个人用户，填写个人信息并上传相关档案。完成后，系统会自动录入您的健康体检指标并生成相关的可视化数据供您参考。
+        </p>
+
+        <h2>为什么选择我们</h2>
+        <p>
+            我们的健康体检系统不仅仅是检查身体状况，更是对健康生活的全面管理。我们使用最先进的医学设备，并由专业医学团队提供服务，确保您获得最准确的健康评估。
+        </p>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 健康管理</p>
+    </footer>
+
+</body>
+</html>
